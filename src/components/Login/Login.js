@@ -18,7 +18,8 @@ const Login = (props) => {
       );
     }, 500)
 
-    return () => {};
+    return () => {}; //This is a cleanup function, it will run before
+    // the next time useEffect runs
     }, [enteredEmail, enteredPassword]);
 
 
