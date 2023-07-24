@@ -17,18 +17,20 @@ const Login = (props) => {
           enteredEmail.includes('@') && enteredPassword.trim().length > 6
       );
     }, 500)
-
+//The reason we put it in a timer is basically the moment a person stop typing for 500 milliseconds,
+    // then we will check if the form is valid if not then we will not do anything this is good as it stop us from checking
+    // the form validity on every keystroke
     return () => {clearTimeout(timeout)}; //This is a cleanup function, it will run before
     // the next time useEffect runs
     }, [enteredEmail, enteredPassword]);
 //So the key reasons for returning the clearTimeout function are:
 
 // Avoid duplicate timers getting created on re-renders
+  //So on each render, a new timeout keeps getting created, without clearing the previous one.
 // Clear any leftover state before re-running effect
 // Prevent memory leaks or stale state
 // Allow restarting the effect cleanly each time
 // Without returning the cleanup function, the timeout would never get cleared, and we'd have multiple redundant timers getting created.
-//
 // So in summary, the return value makes sure to reset the effect to a clean state by clearing the timeout each re-run. This is a very common pattern with effects that use timers, subscriptions, etc.
 
   //So now, whenever enteredEmail or enteredPassword changes, this function will be executed
