@@ -13,12 +13,16 @@ function App() {
       localStorage.setItem('isLoggedIn', '1');
     setIsLoggedIn(true);
   };
-//Remember this take in two parameters, the first is the function to be executed
-// and the second is the dependency array and it will check if that changes and if it does
+//Remember this takes in two parameters, the first is the function to be executed,
+// and the second is the dependency array, and it will check if that changes and if it does
     // then it will execute the function again
   useEffect(() => {
 
-  });
+      if (localStorage.getItem('isLoggedIn') === '1') {
+        setIsLoggedIn(true);
+      }
+
+  }, []);
   const logoutHandler = () => {
     setIsLoggedIn(false);
   };
