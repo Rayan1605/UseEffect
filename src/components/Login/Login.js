@@ -21,7 +21,15 @@ const Login = (props) => {
     return () => {clearTimeout(timeout)}; //This is a cleanup function, it will run before
     // the next time useEffect runs
     }, [enteredEmail, enteredPassword]);
+//So the key reasons for returning the clearTimeout function are:
 
+// Avoid duplicate timers getting created on re-renders
+// Clear any leftover state before re-running effect
+// Prevent memory leaks or stale state
+// Allow restarting the effect cleanly each time
+// Without returning the cleanup function, the timeout would never get cleared, and we'd have multiple redundant timers getting created.
+//
+// So in summary, the return value makes sure to reset the effect to a clean state by clearing the timeout each re-run. This is a very common pattern with effects that use timers, subscriptions, etc.
 
   //So now, whenever enteredEmail or enteredPassword changes, this function will be executed
   const emailChangeHandler = (event) => {
