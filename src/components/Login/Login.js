@@ -15,7 +15,8 @@ const Login = (props) => {
     setFormIsValid(
         enteredEmail.includes('@') && enteredPassword.trim().length > 6
     );
-  }, [setFormIsValid,enteredEmail, enteredPassword]);
+  }, [enteredEmail, enteredPassword]);
+  //So now, whenever enteredEmail or enteredPassword changes, this function will be executed
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
 
