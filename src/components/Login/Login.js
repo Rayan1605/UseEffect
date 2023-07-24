@@ -12,10 +12,13 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    setFormIsValid(
-        enteredEmail.includes('@') && enteredPassword.trim().length > 6
-    );
-  }, [enteredEmail, enteredPassword]);
+    setTimeout(() => {
+      setFormIsValid(
+          enteredEmail.includes('@') && enteredPassword.trim().length > 6
+      );
+    }, [enteredEmail, enteredPassword])
+    }, 500);
+
   //So now, whenever enteredEmail or enteredPassword changes, this function will be executed
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
